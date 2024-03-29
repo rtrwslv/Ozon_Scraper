@@ -10,8 +10,11 @@ driver = uc.Chrome()
 driver.get('https://seller.ozon.ru/app/registration/signin?auth=1')
 driver.maximize_window()
 wait = WebDriverWait(driver, 10)
-button = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'ga29-a2')))
-button.click()
+try:
+    button = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'ga29-a2')))
+    button.click()
+except:
+    print("Too many request, or cloudfare alert, please try again")
 email_input = wait.until(EC.visibility_of_element_located((By.ID, 'email')))
 email_input.send_keys('karimov445@yandex.ru')
 button = driver.find_element(By.CLASS_NAME, 'b239-a')
