@@ -12,3 +12,4 @@ pip install requirements.txt
 python3 review_scraper.py(На этом моменте лучше всего не использовать VPN, так как cloudfare и Ozon блокируют подключение с их публичного IP)
 python3 response_to_reviews_gpt.py(Перед запуском необходимо использовать VPN, так как OpenAI блокирует российские IP адреса)
 Результат выполнения хранится в файле responses.txt
+python3 response_to_reviews.py(На этом моменте лучше всего не использовать VPN, так как cloudfare и Ozon блокируют подключение с их публичного IP)
