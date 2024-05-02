@@ -20,11 +20,11 @@ pyOpenSSL==24.1.0
 pyOpenSSL==24.1.0
 python-dotenv==1.0.1
 railroad==0.5.0
-selenium==4.18.1
+selenium==4.20.0
 Sphinx==7.2.6
 thread==1.1.1
 tornado==6.4
 trove_classifiers==2023.11.29
 truststore==0.8.0
-undetected_chromedriver==2.1.1
+undetected_chromedriver==3.5.5
 urllib3_secure_extra==0.1.0
