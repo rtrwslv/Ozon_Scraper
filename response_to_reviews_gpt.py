@@ -1,16 +1,13 @@
 import os
-from dotenv import load_dotenv
-from openai import OpenAI
+import openai
 from request_sender import create_new_thread
 
 with open('reviews.txt', 'r', encoding='utf-8') as f:
     data = f.read().replace("\n", " ").split("*")
 
-load_dotenv()
-OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
+openai.api_key = "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"
+client = openai.OpenAI(api_key=openai.api_key)
 
-client = OpenAI()
-OpenAI.api_key = OPENAI_API_KEY
 
 assistant = client.beta.assistants.retrieve(
     assistant_id="asst_e8EaO1weVkeACIGjzCNoLNHA"
