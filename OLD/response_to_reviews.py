@@ -3,9 +3,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from time import sleep
-from mail_parser import get_email_code
+from utils.mail_parser import get_email_code
 import traceback
-from selenium.webdriver.common.action_chains import ActionChains
 
 driver = uc.Chrome()
 

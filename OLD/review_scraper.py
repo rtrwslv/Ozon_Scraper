@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from time import sleep
-from mail_parser import get_email_code
+from utils.mail_parser import get_email_code
 import traceback
 
 driver = uc.Chrome()
@@ -23,9 +23,9 @@ try:
     code = get_email_code()
     code_input.send_keys(code)
 
-
-    button = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, "input[value='3907528_1199077']")))
-    button.click()
+    sleep(5)
+    # button = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, "input[value='3907528_1199077']")))
+    # button.click()
 
     button = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="app"]/div[1]/div/div/div[2]/div/div/div[5]/button[2]')))
     button.click()
@@ -46,28 +46,37 @@ try:
         sleep(0.3)
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight)")
         try:
+            sleep(0.7)
             show_more_button = wait.until(EC.visibility_of_element_located((By.XPATH, '//*[@id="app"]/main/div[1]/div[1]/div/div/div[2]/div[3]/div/div[2]/div/button')))
             show_more_button.click()
         except:
             traceback.print_exc()
             break
-
-    sleep(2)
-    num_of_reviews = int(driver.find_element(By.XPATH, '//*[@id="app"]/main/div[1]/div[1]/div/div/div[2]/div[2]/button[2]/div/div[2]/div').text)
-    print(f'Number of reviews: {num_of_reviews}')
-    with open('reviews.txt', 'w', encoding='utf-8') as file:
-        for i in range(num_of_reviews):
-            driver.execute_script(f"window.scrollBy(0, 10);")
-            sleep(0.05)
-            grade = driver.find_element(By.XPATH, f'//*[@id="app"]/main/div[1]/div[1]/div/div/div[2]/div[3]/div/div[2]/div/div/table/tbody/tr[{i + 1}]/td[7]').text
-            review = driver.find_element(By.XPATH, f'//*[@id="app"]/main/div[1]/div[1]/div/div/div[2]/div[3]/div/div[2]/div/div/table/tbody/tr[{i + 1}]/td[6]').text
-            comment_text = f"{review} Оценка: {grade}"
-            print(comment_text)
-            file.write(comment_text + '\n***\n')
+    sleep(10000)
+    # sleep(2)
+    # review_text = str(driver.find_element(By.XPATH,
+    #                                          '//*[@id="app"]/main/div[1]/div[1]/div/div/div[2]/div[2]/button[2]/div/div[2]/div').text)
+    # if '+' in review_text:
+    #     num_of_reviews = 999*3  # or some other logic to handle this case
+    # else:
+    #     num_of_reviews = int(review_text)
+    # # num_of_reviews = int(driver.find_element(By.XPATH, '//*[@id="app"]/main/div[1]/div[1]/div/div/div[2]/div[2]/button[2]/div/div[2]/div').text)
+    #
+    # print(f'Number of reviews: {num_of_reviews}')
+    # with open('reviews.txt', 'w', encoding='utf-8') as file:
+    #     for i in range(num_of_reviews):
+    #         driver.execute_script(f"window.scrollBy(0, 10);")
+    #         sleep(1)
+    #         grade = driver.find_element(By.XPATH, f'//*[@id="app"]/main/div[1]/div[1]/div/div/div[2]/div[3]/div/div[2]/div/div/table/tbody/tr[{i + 1}]/td[7]').text
+    #         review = driver.find_element(By.XPATH, f'//*[@id="app"]/main/div[1]/div[1]/div/div/div[2]/div[3]/div/div[2]/div/div/table/tbody/tr[{i + 1}]/td[6]').text
+    #         comment_text = f"{review} Оценка: {grade}"
+    #         print(comment_text)
+    #         file.write(comment_text + '\n***\n')
+    #         file.flush()
 except:
     traceback.print_exc()
     print("Too many request, or cloudfare alert, please try again")
     exit()
-    
+
 finally:
     driver.quit()
