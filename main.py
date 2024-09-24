@@ -45,8 +45,10 @@ def answer_reviews():
         input('Нажмите Enter для продолжения [Enter]: ')
 
         button = wait.until(
-            EC.element_to_be_clickable((By.XPATH, '//*[@id="app"]/div[1]/div/div/div[2]/div/div/div[5]/button[2]')))
+            EC.element_to_be_clickable((By.XPATH, "/html/body/div[1]/div[1]/div/div/div[1]/div/div/div[3]/button[2]/div")))
         button.click()
+
+        # "/html/body/div[1]/main/div[1]/div[1]/div/div/div/div[4]/div/div/div[1]/a"
 
         sleep(5)
 
@@ -60,20 +62,21 @@ def answer_reviews():
 
         print('Company Name: ' + company)
 
-        link = wait.until(EC.element_to_be_clickable((By.LINK_TEXT, "Отзывы")))
+        # link = wait.until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[1]/main/div[1]/div[1]/div/div/div/div[4]/div/div/div[1]/a")))
+        link = wait.until(EC.element_to_be_clickable((By.PARTIAL_LINK_TEXT, "Отзывы")))
         link.click()
 
         sleep(1)
         try:
             result = driver.find_element(By.XPATH,
-                                         '//*[@id="app"]/main/div[1]/div[1]/div/div/div[2]/div[2]/button[2]/div/div[2]/div')
-
+                                         '/html/body/div[1]/main/div[1]/div[1]/div/div/div[2]/div[2]/button[2]/div/div[2]/div')
+            print(result.text)
             sleep(2)
         except Exception as e:
-            print('Button No Found')
+            print('Button Not Found')
 
         new_reviews = wait.until(
-            EC.element_to_be_clickable((By.XPATH, '//*[@id="app"]/main/div[1]/div[1]/div/div/div[2]/div[2]/button[2]')))
+            EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/main/div[1]/div[1]/div/div/div[2]/div[2]/button[2]/div/div[1]/div/div')))
         new_reviews.click()
 
         sleep(1)
@@ -165,6 +168,7 @@ def answer_reviews():
                     driver.execute_script(javascript_code)
                     send_button = "var button = document.querySelector('.custom-button_button_sTiyh'); button.click();"
                     driver.execute_script(send_button)
+                    print('Ответ оставлен.')
                     close_btn = wait.until(EC.element_to_be_clickable(
                         (By.XPATH, '//*[@id="ods-window-target-container"]/div/div[2]/div/button')))
                     close_btn.click()
@@ -187,6 +191,7 @@ def answer_reviews():
 
     except Exception as e:
         print(e)
+        print_exc()
     finally:
         driver.quit()
         input('Нажмите Enter для закрытия [Enter]: ')
