@@ -150,7 +150,7 @@ def answer_reviews():
                     print(cons)
                     comment = driver.find_element(By.XPATH,
                                                   '//*[@id="ods-window-target-container"]/div/div[2]/div/div/div[2]/div[2]/div[2]/div/div[12]/div[2]/div/div').text
-                    total_review = f"Плюсы товара: {pros if pros else 'не указаны'}, минусы товара: {cons if cons else 'не указаны'}, комментарий: {comment if comment else 'отсутствует'}, оценка: {grade}/5"
+                    total_review = f"Название товара: {product}. Плюсы товара: {pros if pros else 'не указаны'}, минусы товара: {cons if cons else 'не указаны'}, комментарий: {comment if comment else 'отсутствует'}, оценка: {grade}/5"
 
                     save_review(company, product, vendor_code, pros, cons, comment, grade)
 

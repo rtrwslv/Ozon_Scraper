@@ -2,7 +2,7 @@ import os
 import requests
 from dotenv import load_dotenv
 from openai import OpenAI
-from request_sender import create_new_thread
+from utils.request_sender import create_new_thread
 import httpx
 
 def pure_magic(request_text):
