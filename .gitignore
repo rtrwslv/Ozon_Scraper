@@ -2,3 +2,4 @@ __*
 dist/
 build/
 venv/
+.env
